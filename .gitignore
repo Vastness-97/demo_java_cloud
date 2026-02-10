@@ -37,3 +37,7 @@ build/
 
 ### Local Infra Env ###
 docker/local/.env
+docker/local/mysql/data/
+docker/local/redis/data/
+docker/local/nacos/logs/
+docker/local/scripts/nacos-mysql-schema.sql
