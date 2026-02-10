@@ -16,3 +16,4 @@ Write-Host "Importing schema into MySQL: $MysqlContainer / DB: $Database"
 Get-Content $schemaFile | docker exec -i $MysqlContainer mysql -uroot -p$MysqlRootPassword $Database
 
 Write-Host "Done. You can restart nacos-dev if it was failing before schema import."
+

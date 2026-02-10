@@ -1,0 +1,7 @@
+1.container：The food was stored in a plastic container to keep it fresh.食物存放在塑料“容器”中以保持新鲜。
+2.volume：
+    -The volume of the box is measured in cubic centimeters.这个盒子的“这个盒子的体积是用立方厘米来测量的。”是用立方厘米来测量的。
+    -Please turn up the volume on the speaker so we can hear the music better.请把音响的“音量”调高，这样我们就能更好地听到音乐。
+    -The volume of water in the tank needs to be checked regularly.水箱中的“水量”需要定期检查。
+    -She read the entire volume of poetry in one sitting.她一口气读完了“整本”诗集。
+    -The volume of sales increased significantly last quarter.上个季度的销售量显著增加。

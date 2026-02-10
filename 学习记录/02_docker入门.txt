@@ -1,0 +1,10 @@
+  常用命令
+      docker --version
+      docker ps # 查看“正在运行”的容器列表（容器名、状态、端口映射等）
+      docker ps -a # 查看“所有”容器，包括已退出/创建失败的容器。排障时常用。
+      docker images # 查看本机已有镜像（仓库名、tag、镜像ID、大小）。
+      docker logs -f <container> # 实时跟踪某个容器日志（-f = follow）。例：docker logs -f nacos-dev
+      docker exec -it <container> sh # 进入容器交互式 shell（-i 交互输入，-t 终端）。 例：docker exec -it mysql-dev sh。备注：有些镜像可用 bash，没有就用 sh。
+      docker compose up -d # 按 docker-compose.yml 启动服务；缺镜像会自动拉取；-d 后台运行。
+      docker compose down # 停止并删除 compose 创建的容器和网络（默认不删卷）。
+      docker compose down # -v（会清数据，谨慎）。

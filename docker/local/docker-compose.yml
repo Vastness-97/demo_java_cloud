@@ -1,12 +1,12 @@
 services:
   mysql:
-    image: mysql:8.4
-    container_name: mysql-dev
-    restart: unless-stopped
-    environment:
+    image: mysql:8.4 # 镜像
+    container_name: mysql-dev # 容器
+    restart: unless-stopped # 重启后容器会自动拉起，除非你手动停了它。
+    environment: # 容器内环境变量（密码、库名等），值来自 .env
       TZ: ${TZ}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_DATABASE: ${MYSQL_DATABASE} # 首次启动创建的数据库
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     command:
@@ -15,12 +15,12 @@ services:
         "--character-set-server=utf8mb4",
         "--collation-server=utf8mb4_unicode_ci"
       ]
-    ports:
+    ports: # 端口映射，左边本机端口，右边容器端口
       - "${MYSQL_PORT}:3306"
-    volumes:
+    volumes: # 数据挂载到本地目录，避免删容器就丢数据
       - ./mysql/data:/var/lib/mysql
       - ./mysql/init:/docker-entrypoint-initdb.d
-    healthcheck:
+    healthcheck: # 健康检查命令，决定容器是否“健康”
       test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${MYSQL_ROOT_PASSWORD}"]
       interval: 10s
       timeout: 5s
@@ -46,13 +46,13 @@ services:
     container_name: nacos-dev
     restart: unless-stopped
     depends_on:
-      mysql:
+      mysql: # 依赖 mysql 健康后再启动 - 先 MySQL 可用 - 再起 Nacos，连 MySQL 读写配置
         condition: service_healthy
     environment:
       TZ: ${TZ}
       MODE: standalone
-      SPRING_DATASOURCE_PLATFORM: mysql
-      MYSQL_SERVICE_HOST: mysql
+      SPRING_DATASOURCE_PLATFORM: mysql # 提前在MySQL的数据库中使用nacos官网提供的：mysql-schema.sql。来创建naocs所以要的表。
+      MYSQL_SERVICE_HOST: mysql # 数据库实例数量（Nacos 兼容多库配置场景），本地一般就是 1。
       MYSQL_SERVICE_PORT: 3306
       MYSQL_SERVICE_DB_NUM: 1
       MYSQL_SERVICE_DB_NAME: ${MYSQL_DATABASE}
