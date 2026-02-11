@@ -38,10 +38,22 @@ spring:
         file-extension: yaml
 
 mybatis-plus:
+  # Mapper XML 扫描路径
   mapper-locations: classpath*:/mapper/**/*.xml
+  # 实体包别名（后续有实体类后可直接在 XML 中用短类名）
+  type-aliases-package: com.demo.user.entity
+  configuration:
+    # 下划线字段自动映射到驼峰属性（如 user_name -> userName）
+    map-underscore-to-camel-case: true
+    # 开启二级缓存总开关（按需使用）
+    cache-enabled: false
+    # 控制台打印 SQL，联调阶段方便排查；生产可改为 org.apache.ibatis.logging.nologging.NoLoggingImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
+      # 主键策略：雪花算法
       id-type: assign_id
+      # 逻辑删除配置
       logic-delete-field: deleted
       logic-delete-value: 1
       logic-not-delete-value: 0
