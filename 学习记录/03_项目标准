@@ -1,0 +1,10 @@
+1.基本命名标准
+    - 根包名使用倒置的公司域名+项目名字
+    - controller：xxxController
+        # 要做到见名知意，套公式：<动作><资源><可选限定>Request，特殊情况下也可以自定义。
+        - 入参：dto.request.createUserRequest #
+        - 出参：dto.response.listUserResponse #
+    - controller.internal.xxxInternalController
+        # 要做到见名知意，套公式：<动作><资源><可选限定>Request，特殊情况下也可以自定义。
+            - 入参：dto.createUserDTO #
+        - 出参：dto.listUserResponse #

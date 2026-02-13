@@ -8,3 +8,9 @@
       docker compose up -d # 按 docker-compose.yml 启动服务；缺镜像会自动拉取；-d 后台运行。
       docker compose down # 停止并删除 compose 创建的容器和网络（默认不删卷）。
       docker compose down # -v（会清数据，谨慎）。
+
+  nacos-mysql打通的关键按步骤：
+    因为nacos依赖mysql，所以在编写docker-compose.yml的时候应 提前 为mysql容器配置好专用的业务账号和数据库来为nacos容器坐准备。
+    所以在mysql/init下建立初始化sql文件用以在mysql容器初次运行时自动创建在docker-compose.yml中配置好的数据库。
+
+
